@@ -1,0 +1,534 @@
+{
+  "name": {
+    "ar": "مِرآة — عناصر البيع بالصورة",
+    "en": "Mirah — Visual Commerce Components"
+  },
+  "description": {
+    "ar": "5 عناصر تخلّي صورك تبيع: صورة تسوّق بنقاط على المنتجات، مقارنة قبل وبعد بالسحب، فيديو سينمائي، معرض صور بعرض كامل، وأكمل الإطلالة بإضافة القطع كلها بضغطة.",
+    "en": "5 components that make your visuals sell: shoppable hotspot image, drag before/after, cinematic video hero, lightbox gallery, and complete-the-look with one-tap add-all."
+  },
+  "author": {
+    "name": "Khaled Alshamrani",
+    "email": "fooz1980k@gmail.com",
+    "url": "https://github.com/fooz1980k-sudo/mirah-bundle"
+  },
+  "repository": "https://github.com/fooz1980k-sudo/mirah-bundle",
+  "components": [
+    {
+      "title": "مِرآة · صورة تسوّق",
+      "icon": "sicon-cursor-click",
+      "name": "mirah-lookbook",
+      "fields": [
+        {
+          "id": "title",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "العنوان",
+          "format": "text",
+          "required": false,
+          "maxLength": 120,
+          "value": "تسوّق الإطلالة",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "subtitle",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "الوصف",
+          "format": "textarea",
+          "required": false,
+          "maxLength": 200,
+          "value": "اضغط على النقاط لتشوف القطع",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "image",
+          "icon": "sicon-image-landscape",
+          "type": "string",
+          "format": "image",
+          "label": "الصورة",
+          "required": false,
+          "value": ""
+        },
+        {
+          "id": "spots",
+          "icon": "sicon-list",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 8,
+          "item_label": "نقطة منتج",
+          "fields": [
+            {
+              "id": "product",
+              "icon": "sicon-box",
+              "type": "items",
+              "label": "المنتج",
+              "placeholder": "ابحث في منتجاتك...",
+              "format": "dropdown-list",
+              "source": "products",
+              "options": [],
+              "required": true,
+              "selected": [],
+              "searchable": true,
+              "multichoice": false,
+              "minLength": 1,
+              "maxLength": 1
+            },
+            {
+              "id": "x",
+              "icon": "sicon-hashtag",
+              "type": "number",
+              "format": "slider",
+              "label": "الموقع الأفقي (%)",
+              "required": false,
+              "value": 50,
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "id": "y",
+              "icon": "sicon-hashtag",
+              "type": "number",
+              "format": "slider",
+              "label": "الموقع العمودي (%)",
+              "required": false,
+              "value": 50,
+              "minimum": 0,
+              "maximum": 100
+            }
+          ],
+          "value": []
+        },
+        {
+          "id": "color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون مميز (اختياري — الافتراضي لون متجرك)",
+          "required": false,
+          "value": ""
+        }
+      ],
+      "key": "3a82006b-728f-5cec-bf4a-3d858b4aabe5",
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/mirah-bundle/main/previews/mirah-lookbook.jpg"
+    },
+    {
+      "title": "مِرآة · قبل وبعد",
+      "icon": "sicon-swap-horizontal",
+      "name": "mirah-before-after",
+      "fields": [
+        {
+          "id": "title",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "العنوان",
+          "format": "text",
+          "required": false,
+          "maxLength": 120,
+          "value": "الفرق واضح",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "subtitle",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "الوصف",
+          "format": "textarea",
+          "required": false,
+          "maxLength": 200,
+          "value": "اسحب وشوف الفرق بنفسك",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "before",
+          "icon": "sicon-image-landscape",
+          "type": "string",
+          "format": "image",
+          "label": "صورة قبل",
+          "required": false,
+          "value": ""
+        },
+        {
+          "id": "after",
+          "icon": "sicon-image-landscape",
+          "type": "string",
+          "format": "image",
+          "label": "صورة بعد",
+          "required": false,
+          "value": ""
+        },
+        {
+          "id": "before_label",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "عنوان قبل",
+          "format": "text",
+          "required": false,
+          "maxLength": 20,
+          "value": "قبل",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "after_label",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "عنوان بعد",
+          "format": "text",
+          "required": false,
+          "maxLength": 20,
+          "value": "بعد",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "button",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "نص الزر",
+          "format": "text",
+          "required": false,
+          "maxLength": 30,
+          "value": "",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "link",
+          "icon": "sicon-link",
+          "type": "string",
+          "format": "url",
+          "label": "رابط الزر",
+          "required": false,
+          "value": "",
+          "placeholder": "https://"
+        },
+        {
+          "id": "color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون مميز (اختياري — الافتراضي لون متجرك)",
+          "required": false,
+          "value": ""
+        }
+      ],
+      "key": "a75515e3-5b14-5104-a512-e19ad1e3a2d1",
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/mirah-bundle/main/previews/mirah-before-after.jpg"
+    },
+    {
+      "title": "مِرآة · فيديو سينمائي",
+      "icon": "sicon-video",
+      "name": "mirah-video-hero",
+      "fields": [
+        {
+          "id": "video",
+          "icon": "sicon-link",
+          "type": "string",
+          "format": "url",
+          "label": "رابط فيديو MP4 (مباشر)",
+          "required": false,
+          "value": "",
+          "placeholder": "https://"
+        },
+        {
+          "id": "poster",
+          "icon": "sicon-image-landscape",
+          "type": "string",
+          "format": "image",
+          "label": "صورة الغلاف (تظهر قبل الفيديو وعلى وضع توفير البيانات)",
+          "required": false,
+          "value": ""
+        },
+        {
+          "id": "eyebrow",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "سطر صغير فوق العنوان",
+          "format": "text",
+          "required": false,
+          "maxLength": 40,
+          "value": "مجموعة جديدة",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "title",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "العنوان",
+          "format": "text",
+          "required": false,
+          "maxLength": 80,
+          "value": "أناقة تتحرك معك",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "subtitle",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "الوصف",
+          "format": "textarea",
+          "required": false,
+          "maxLength": 200,
+          "value": "",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "button",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "نص الزر",
+          "format": "text",
+          "required": false,
+          "maxLength": 30,
+          "value": "اكتشف الآن",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "link",
+          "icon": "sicon-link",
+          "type": "string",
+          "format": "url",
+          "label": "رابط الزر",
+          "required": false,
+          "value": "",
+          "placeholder": "https://"
+        },
+        {
+          "id": "height",
+          "icon": "sicon-hashtag",
+          "type": "number",
+          "format": "slider",
+          "label": "الارتفاع (% من الشاشة)",
+          "required": false,
+          "value": 85,
+          "minimum": 50,
+          "maximum": 100
+        },
+        {
+          "id": "overlay",
+          "icon": "sicon-hashtag",
+          "type": "number",
+          "format": "slider",
+          "label": "تعتيم (%)",
+          "required": false,
+          "value": 70,
+          "minimum": 0,
+          "maximum": 95
+        },
+        {
+          "id": "color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون مميز (اختياري — الافتراضي لون متجرك)",
+          "required": false,
+          "value": ""
+        }
+      ],
+      "key": "3986cfe6-4d00-5aea-b9f7-f16fabf84dc7",
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/mirah-bundle/main/previews/mirah-video-hero.jpg"
+    },
+    {
+      "title": "مِرآة · معرض الصور",
+      "icon": "sicon-image",
+      "name": "mirah-gallery",
+      "fields": [
+        {
+          "id": "title",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "العنوان",
+          "format": "text",
+          "required": false,
+          "maxLength": 120,
+          "value": "من عالمنا",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "subtitle",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "الوصف",
+          "format": "textarea",
+          "required": false,
+          "maxLength": 200,
+          "value": "",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "images",
+          "icon": "sicon-list",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 24,
+          "item_label": "صورة",
+          "fields": [
+            {
+              "id": "image",
+              "icon": "sicon-image-landscape",
+              "type": "string",
+              "format": "image",
+              "label": "الصورة",
+              "required": false,
+              "value": ""
+            },
+            {
+              "id": "caption",
+              "icon": "sicon-format-text-alt",
+              "type": "string",
+              "label": "تعليق",
+              "format": "text",
+              "required": false,
+              "maxLength": 60,
+              "value": "",
+              "placeholder": "",
+              "multilanguage": true
+            },
+            {
+              "id": "link",
+              "icon": "sicon-link",
+              "type": "string",
+              "format": "url",
+              "label": "رابط تسوّق (اختياري)",
+              "required": false,
+              "value": "",
+              "placeholder": "https://"
+            }
+          ],
+          "value": []
+        },
+        {
+          "id": "columns",
+          "icon": "sicon-hashtag",
+          "type": "number",
+          "format": "slider",
+          "label": "عدد الأعمدة",
+          "required": false,
+          "value": 3,
+          "minimum": 2,
+          "maximum": 5
+        },
+        {
+          "id": "handle",
+          "icon": "sicon-link",
+          "type": "string",
+          "format": "url",
+          "label": "رابط حسابك في انستقرام (اختياري)",
+          "required": false,
+          "value": "",
+          "placeholder": "https://"
+        },
+        {
+          "id": "color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون مميز (اختياري — الافتراضي لون متجرك)",
+          "required": false,
+          "value": ""
+        }
+      ],
+      "key": "ee591e00-a6b9-5ec4-8558-456a6b1fa890",
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/mirah-bundle/main/previews/mirah-gallery.jpg"
+    },
+    {
+      "title": "مِرآة · أكمل الإطلالة",
+      "icon": "sicon-shopping-bag",
+      "name": "mirah-shop-look",
+      "fields": [
+        {
+          "id": "title",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "العنوان",
+          "format": "text",
+          "required": false,
+          "maxLength": 120,
+          "value": "الإطلالة كاملة",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "subtitle",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "الوصف",
+          "format": "textarea",
+          "required": false,
+          "maxLength": 200,
+          "value": "اختر القطع اللي تبيها وأضفها بضغطة",
+          "placeholder": "",
+          "multilanguage": true
+        },
+        {
+          "id": "image",
+          "icon": "sicon-image-landscape",
+          "type": "string",
+          "format": "image",
+          "label": "صورة الإطلالة",
+          "required": false,
+          "value": ""
+        },
+        {
+          "id": "products",
+          "icon": "sicon-box",
+          "type": "items",
+          "label": "اختر المنتجات",
+          "placeholder": "ابحث في منتجاتك...",
+          "format": "dropdown-list",
+          "source": "products",
+          "options": [],
+          "required": true,
+          "selected": [],
+          "searchable": true,
+          "multichoice": true,
+          "minLength": 2,
+          "maxLength": 6
+        },
+        {
+          "id": "note",
+          "icon": "sicon-format-text-alt",
+          "type": "string",
+          "label": "ملاحظة تحت المجموع (اختياري)",
+          "format": "text",
+          "required": false,
+          "maxLength": 60,
+          "value": "",
+          "placeholder": "مثلاً: شحن مجاني للإطلالة كاملة",
+          "multilanguage": true
+        },
+        {
+          "id": "color",
+          "icon": "sicon-color-palette",
+          "type": "string",
+          "format": "color",
+          "inputType": "color",
+          "label": "لون مميز (اختياري — الافتراضي لون متجرك)",
+          "required": false,
+          "value": ""
+        }
+      ],
+      "key": "c8c04cf5-f9ed-541f-930c-b94bb35071c4",
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/mirah-bundle/main/previews/mirah-shop-look.jpg"
+    }
+  ]
+}
