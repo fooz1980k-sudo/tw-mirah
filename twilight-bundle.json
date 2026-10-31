@@ -10,9 +10,9 @@
   "author": {
     "name": "Khaled Alshamrani",
     "email": "fooz1980k@gmail.com",
-    "url": "https://github.com/fooz1980k-sudo/mirah-bundle"
+    "url": "https://github.com/fooz1980k-sudo/tw-mirah"
   },
-  "repository": "https://github.com/fooz1980k-sudo/mirah-bundle",
+  "repository": "https://github.com/fooz1980k-sudo/tw-mirah",
   "components": [
     {
       "title": "مِرآة · صورة تسوّق",
@@ -115,7 +115,7 @@
         }
       ],
       "key": "3a82006b-728f-5cec-bf4a-3d858b4aabe5",
-      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/mirah-bundle/main/previews/mirah-lookbook.jpg"
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/tw-mirah/main/previews/mirah-lookbook.jpg"
     },
     {
       "title": "مِرآة · قبل وبعد",
@@ -222,7 +222,7 @@
         }
       ],
       "key": "a75515e3-5b14-5104-a512-e19ad1e3a2d1",
-      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/mirah-bundle/main/previews/mirah-before-after.jpg"
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/tw-mirah/main/previews/mirah-before-after.jpg"
     },
     {
       "title": "مِرآة · فيديو سينمائي",
@@ -340,7 +340,7 @@
         }
       ],
       "key": "3986cfe6-4d00-5aea-b9f7-f16fabf84dc7",
-      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/mirah-bundle/main/previews/mirah-video-hero.jpg"
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/tw-mirah/main/previews/mirah-video-hero.jpg"
     },
     {
       "title": "مِرآة · معرض الصور",
@@ -448,7 +448,7 @@
         }
       ],
       "key": "ee591e00-a6b9-5ec4-8558-456a6b1fa890",
-      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/mirah-bundle/main/previews/mirah-gallery.jpg"
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/tw-mirah/main/previews/mirah-gallery.jpg"
     },
     {
       "title": "مِرآة · أكمل الإطلالة",
@@ -528,7 +528,7 @@
         }
       ],
       "key": "c8c04cf5-f9ed-541f-930c-b94bb35071c4",
-      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/mirah-bundle/main/previews/mirah-shop-look.jpg"
+      "image": "https://raw.githubusercontent.com/fooz1980k-sudo/tw-mirah/main/previews/mirah-shop-look.jpg"
     }
   ]
 }
