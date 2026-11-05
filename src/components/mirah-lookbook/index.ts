@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { base } from '../../shared/styles';
-import { addToCart, ids, money, Prod, products, style, toast, txt } from '../../shared/salla';
+import { addToCart, ids, money, Prod, products, style, toast, localizedString } from '../../shared/salla';
 
 type Spot = { x?: number; y?: number; product?: unknown };
 /** Shoppable photo: pulsing hotspots on the image open a live product card with add-to-cart. */
@@ -42,8 +42,8 @@ export default class MirahLookbook extends LitElement {
   render() {
     const c = this.config ?? {}; const spots = c.spots ?? [];
     if (!c.image) return html`<div class="wrap"><p class="sub">أضف صورة الإطلالة ونقاط المنتجات من إعدادات العنصر.</p></div>`;
-    return html`<div class="wrap" style=${style(c.color)}><span class="eyebrow">✨ تسوّق الإطلالة</span>${txt(c.title) ? html`<h2 class="title">${txt(c.title)}</h2>` : ''}${txt(c.subtitle) ? html`<p class="sub">${txt(c.subtitle)}</p>` : ''}
-      <div class="stage"><div class="pic"><img src=${c.image} alt=${txt(c.title)} />
+    return html`<div class="wrap" style=${style(c.color)}><span class="eyebrow">✨ تسوّق الإطلالة</span>${localizedString(c.title) ? html`<h2 class="title">${localizedString(c.title)}</h2>` : ''}${localizedString(c.subtitle) ? html`<p class="sub">${localizedString(c.subtitle)}</p>` : ''}
+      <div class="stage"><div class="pic"><img src=${c.image} alt=${localizedString(c.title)} />
         ${spots.map((s, i) => this.map.get(ids(s.product)[0]) ? html`<button class="dot ${this.active === i ? 'on' : ''}" style="left:${s.x ?? 50}%;top:${s.y ?? 50}%" aria-label="عرض المنتج ${i + 1}" @click=${() => (this.active = this.active === i ? -1 : i)}>+</button>` : '')}</div>
         ${this.active >= 0 && spots[this.active] ? this.card(spots[this.active], this.active) : ''}</div>
       <div class="list">${spots.map((s, i) => { const p = this.map.get(ids(s.product)[0]); return p ? html`<button class="chip ${this.active === i ? 'on' : ''}" @click=${() => (this.active = i)}>${p.name}</button>` : ''; })}</div></div>`;

@@ -1,6 +1,6 @@
-import { css as h, LitElement as w, html as c } from "lit";
+import { css as x, LitElement as w, html as c } from "lit";
 import { property as $, state as y } from "lit/decorators.js";
-const k = h`
+const k = x`
   :host { display: block; --tf-accent: var(--tf-custom, var(--color-primary, #c9a45c)); --tf-ink: #0f0c18; --tf-ivory: #f6f1e7; --tf-mut: #a59bc2;
     --tf-gold: linear-gradient(135deg, #f5d68a, #c9a45c 55%, #9a7634); font-family: inherit; direction: inherit; }
   :host([hidden]) { display: none; }
@@ -17,104 +17,129 @@ const k = h`
   .skel { background: linear-gradient(90deg, #8881 0, #8882 50%, #8881 100%); background-size: 200% 100%; animation: sk 1.4s infinite; border-radius: 14px; }
   @keyframes sk { to { background-position: -200% 0; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-`, m = () => window.Salla, v = async () => {
+`, l = () => window.Salla, v = async () => {
   var t, i;
   try {
-    await ((i = (t = m()) == null ? void 0 : t.onReady) == null ? void 0 : i.call(t));
+    await ((i = (t = l()) == null ? void 0 : t.onReady) == null ? void 0 : i.call(t));
   } catch {
   }
-}, x = (t, i) => (document.documentElement.lang || "ar").startsWith("en") ? i : t, s = (t) => {
-  const i = typeof t == "object" && t ? t.amount : t, a = Number(i);
-  return Number.isFinite(a) ? a : 0;
+}, h = (t, i) => (document.documentElement.lang || "ar").startsWith("en") ? i : t, s = (t) => {
+  const i = typeof t == "object" && t ? t.amount : t, e = Number(i);
+  return Number.isFinite(e) ? e : 0;
 };
 function z(t) {
-  var e, r, o, n, d, p;
-  const i = s(t == null ? void 0 : t.sale_price) && s(t == null ? void 0 : t.sale_price) < s((t == null ? void 0 : t.regular_price) ?? (t == null ? void 0 : t.price)) ? s(t == null ? void 0 : t.sale_price) : s(t == null ? void 0 : t.price), a = Math.max(s(t == null ? void 0 : t.regular_price), s(t == null ? void 0 : t.price), i);
+  var a, r, o, n, f, b;
+  const i = s(t == null ? void 0 : t.sale_price) && s(t == null ? void 0 : t.sale_price) < s((t == null ? void 0 : t.regular_price) ?? (t == null ? void 0 : t.price)) ? s(t == null ? void 0 : t.sale_price) : s(t == null ? void 0 : t.price), e = Math.max(s(t == null ? void 0 : t.regular_price), s(t == null ? void 0 : t.price), i);
   return {
     id: Number(t == null ? void 0 : t.id),
     name: String((t == null ? void 0 : t.name) ?? ""),
     url: String((t == null ? void 0 : t.url) ?? "#"),
-    image: String(((e = t == null ? void 0 : t.image) == null ? void 0 : e.url) ?? (t == null ? void 0 : t.main_image) ?? (t == null ? void 0 : t.thumbnail) ?? ((o = (r = t == null ? void 0 : t.images) == null ? void 0 : r[0]) == null ? void 0 : o.url) ?? ""),
+    image: String(((a = t == null ? void 0 : t.image) == null ? void 0 : a.url) ?? (t == null ? void 0 : t.main_image) ?? (t == null ? void 0 : t.thumbnail) ?? ((o = (r = t == null ? void 0 : t.images) == null ? void 0 : r[0]) == null ? void 0 : o.url) ?? ""),
     price: i,
-    regular: a,
-    rating: s(((n = t == null ? void 0 : t.rating) == null ? void 0 : n.stars) ?? ((d = t == null ? void 0 : t.rating) == null ? void 0 : d.rate) ?? (t == null ? void 0 : t.rating)),
-    ratingCount: s((p = t == null ? void 0 : t.rating) == null ? void 0 : p.count),
+    regular: e,
+    rating: s(((n = t == null ? void 0 : t.rating) == null ? void 0 : n.stars) ?? ((f = t == null ? void 0 : t.rating) == null ? void 0 : f.rate) ?? (t == null ? void 0 : t.rating)),
+    ratingCount: s((b = t == null ? void 0 : t.rating) == null ? void 0 : b.count),
     qty: (t == null ? void 0 : t.quantity) == null || t != null && t.unlimited_quantity ? null : s(t == null ? void 0 : t.quantity),
     available: (t == null ? void 0 : t.is_available) !== !1 && (t == null ? void 0 : t.status) !== "out"
   };
 }
-const u = (t) => (Array.isArray(t) ? t : []).map((i) => Number(typeof i == "object" && i ? i.value : i)).filter((i) => Number.isFinite(i) && i > 0);
+const m = (t) => (Array.isArray(t) ? t : []).map((i) => Number(typeof i == "object" && i ? i.value : i)).filter((i) => Number.isFinite(i) && i > 0);
 async function _(t) {
-  return await v(), (await Promise.all(u(t).map((a) => {
-    var e, r, o, n;
-    return (n = (o = (r = (e = m()) == null ? void 0 : e.product) == null ? void 0 : r.api) == null ? void 0 : o.getDetails) == null ? void 0 : n.call(o, a).then((d) => z(d == null ? void 0 : d.data)).catch(() => null);
-  }))).filter((a) => !!a && !!a.name);
+  return await v(), (await Promise.all(m(t).map((e) => {
+    var a, r, o, n;
+    return (n = (o = (r = (a = l()) == null ? void 0 : a.product) == null ? void 0 : r.api) == null ? void 0 : o.getDetails) == null ? void 0 : n.call(o, e).then((f) => z(f == null ? void 0 : f.data)).catch(() => null);
+  }))).filter((e) => !!e && !!e.name);
 }
 const S = (t) => {
-  var i, a;
+  var i, e;
   try {
-    return ((a = (i = m()) == null ? void 0 : i.money) == null ? void 0 : a.call(i, t)) ?? `${t} ${x("ر.س", "SAR")}`;
+    return ((e = (i = l()) == null ? void 0 : i.money) == null ? void 0 : e.call(i, t)) ?? `${t} ${h("ر.س", "SAR")}`;
   } catch {
-    return `${t} ${x("ر.س", "SAR")}`;
+    return `${t} ${h("ر.س", "SAR")}`;
   }
 };
-async function q(t) {
-  var i, a, e;
+async function j(t) {
+  var i, e, a;
   await v();
   try {
-    await ((e = (a = (i = m()) == null ? void 0 : i.cart) == null ? void 0 : a.addItem) == null ? void 0 : e.call(a, { id: t, quantity: 1 }));
+    await ((a = (e = (i = l()) == null ? void 0 : i.cart) == null ? void 0 : e.addItem) == null ? void 0 : a.call(e, { id: t, quantity: 1 }));
   } catch {
     location.href = `${location.origin}/p${t}`;
   }
 }
-function j(t) {
-  var i, a;
+function q(t) {
+  var i, e;
   try {
-    (a = (i = m()) == null ? void 0 : i.success) == null || a.call(i, t);
+    (e = (i = l()) == null ? void 0 : i.success) == null || e.call(i, t);
   } catch {
   }
 }
-const f = (t) => String(t && typeof t == "object" ? t[(document.documentElement.lang || "ar").slice(0, 2)] ?? t.ar ?? "" : t ?? ""), N = (t) => t ? `--tf-custom:${t}` : "";
-var C = Object.defineProperty, g = (t, i, a, e) => {
+const N = () => {
+  var t, i, e, a, r;
+  try {
+    const o = ((i = (t = l()) == null ? void 0 : t.lang) == null ? void 0 : i.locale) ?? ((r = (a = (e = l()) == null ? void 0 : e.config) == null ? void 0 : a.get) == null ? void 0 : r.call(a, "user.language_code"));
+    if (typeof o == "string" && o) return o.slice(0, 2);
+  } catch {
+  }
+  return (document.documentElement.lang || "ar").slice(0, 2);
+}, u = (t) => {
+  if (t == null) return "";
+  if (typeof t == "string") {
+    const i = t.trim();
+    if (i.startsWith("{") && i.endsWith("}"))
+      try {
+        return u(JSON.parse(i));
+      } catch {
+      }
+    return t;
+  }
+  if (typeof t == "number" || typeof t == "boolean") return String(t);
+  if (typeof t == "object") {
+    const i = t, e = i[N()] ?? i.ar ?? i.en ?? Object.values(i).find((a) => typeof a == "string" && a);
+    return typeof e == "string" ? e : "";
+  }
+  return "";
+}, C = (t) => t ? `--tf-custom:${t}` : "";
+var A = Object.defineProperty, g = (t, i, e, a) => {
   for (var r = void 0, o = t.length - 1, n; o >= 0; o--)
-    (n = t[o]) && (r = n(i, a, r) || r);
-  return r && C(i, a, r), r;
+    (n = t[o]) && (r = n(i, e, r) || r);
+  return r && A(i, e, r), r;
 };
-const b = class b extends w {
+const p = class p extends w {
   constructor() {
     super(...arguments), this.map = /* @__PURE__ */ new Map(), this.active = -1, this.seq = 0;
   }
   willUpdate(i) {
     var r;
     if (!i.has("config")) return;
-    const a = ++this.seq, e = (((r = this.config) == null ? void 0 : r.spots) ?? []).flatMap((o) => u(o.product).slice(0, 1));
-    _(e.map((o) => ({ value: o }))).then((o) => {
-      a === this.seq && (this.map = new Map(o.map((n) => [n.id, n])));
+    const e = ++this.seq, a = (((r = this.config) == null ? void 0 : r.spots) ?? []).flatMap((o) => m(o.product).slice(0, 1));
+    _(a.map((o) => ({ value: o }))).then((o) => {
+      e === this.seq && (this.map = new Map(o.map((n) => [n.id, n])));
     });
   }
-  card(i, a) {
-    const e = this.map.get(u(i.product)[0]);
-    if (!e) return "";
+  card(i, e) {
+    const a = this.map.get(m(i.product)[0]);
+    if (!a) return "";
     const r = Number(i.x ?? 50), o = Number(i.y ?? 50), n = `${r > 60 ? `right:${100 - r + 4}%` : `left:${r + 4}%`};top:${Math.min(o, 70)}%`;
-    return c`<div class="pop" style=${n} role="dialog" aria-label=${e.name}><button class="x" aria-label="إغلاق" @click=${() => this.active = -1}>×</button>
-      <img src=${e.image} alt="" /><div><a href=${e.url}>${e.name}</a><b>${S(e.price)}</b>
-      <button class="btn" ?disabled=${!e.available} @click=${async () => {
-      await q(e.id), j("أُضيف للسلة ✓");
-    }}>${e.available ? "أضف للسلة" : "غير متوفر"}</button></div></div>`;
+    return c`<div class="pop" style=${n} role="dialog" aria-label=${a.name}><button class="x" aria-label="إغلاق" @click=${() => this.active = -1}>×</button>
+      <img src=${a.image} alt="" /><div><a href=${a.url}>${a.name}</a><b>${S(a.price)}</b>
+      <button class="btn" ?disabled=${!a.available} @click=${async () => {
+      await j(a.id), q("أُضيف للسلة ✓");
+    }}>${a.available ? "أضف للسلة" : "غير متوفر"}</button></div></div>`;
   }
   render() {
-    const i = this.config ?? {}, a = i.spots ?? [];
-    return i.image ? c`<div class="wrap" style=${N(i.color)}><span class="eyebrow">✨ تسوّق الإطلالة</span>${f(i.title) ? c`<h2 class="title">${f(i.title)}</h2>` : ""}${f(i.subtitle) ? c`<p class="sub">${f(i.subtitle)}</p>` : ""}
-      <div class="stage"><div class="pic"><img src=${i.image} alt=${f(i.title)} />
-        ${a.map((e, r) => this.map.get(u(e.product)[0]) ? c`<button class="dot ${this.active === r ? "on" : ""}" style="left:${e.x ?? 50}%;top:${e.y ?? 50}%" aria-label="عرض المنتج ${r + 1}" @click=${() => this.active = this.active === r ? -1 : r}>+</button>` : "")}</div>
-        ${this.active >= 0 && a[this.active] ? this.card(a[this.active], this.active) : ""}</div>
-      <div class="list">${a.map((e, r) => {
-      const o = this.map.get(u(e.product)[0]);
+    const i = this.config ?? {}, e = i.spots ?? [];
+    return i.image ? c`<div class="wrap" style=${C(i.color)}><span class="eyebrow">✨ تسوّق الإطلالة</span>${u(i.title) ? c`<h2 class="title">${u(i.title)}</h2>` : ""}${u(i.subtitle) ? c`<p class="sub">${u(i.subtitle)}</p>` : ""}
+      <div class="stage"><div class="pic"><img src=${i.image} alt=${u(i.title)} />
+        ${e.map((a, r) => this.map.get(m(a.product)[0]) ? c`<button class="dot ${this.active === r ? "on" : ""}" style="left:${a.x ?? 50}%;top:${a.y ?? 50}%" aria-label="عرض المنتج ${r + 1}" @click=${() => this.active = this.active === r ? -1 : r}>+</button>` : "")}</div>
+        ${this.active >= 0 && e[this.active] ? this.card(e[this.active], this.active) : ""}</div>
+      <div class="list">${e.map((a, r) => {
+      const o = this.map.get(m(a.product)[0]);
       return o ? c`<button class="chip ${this.active === r ? "on" : ""}" @click=${() => this.active = r}>${o.name}</button>` : "";
     })}</div></div>` : c`<div class="wrap"><p class="sub">أضف صورة الإطلالة ونقاط المنتجات من إعدادات العنصر.</p></div>`;
   }
 };
-b.styles = [k, h`
+p.styles = [k, x`
     .stage { position: relative; } .pic { position: relative; border-radius: 28px; overflow: hidden; background: #eee; }
     .pic > img { display: block; width: 100%; max-height: 82vh; object-fit: cover; }
     .dot { position: absolute; width: 34px; height: 34px; margin: -17px; border-radius: 50%; border: 0; cursor: pointer; background: #fff; box-shadow: 0 6px 20px #0006; display: grid; place-items: center; font-weight: 800; color: #1b1408; font-size: 18px; transition: transform .3s; }
@@ -130,17 +155,17 @@ b.styles = [k, h`
     .list { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; } .chip { border: 1px solid #0000001a; border-radius: 99px; padding: 8px 14px; font: inherit; font-size: 14px; background: #fff; cursor: pointer; }
     .chip.on { border-color: var(--tf-accent); color: var(--tf-accent); font-weight: 700; }
   `];
-let l = b;
+let d = p;
 g([
   $({ type: Object })
-], l.prototype, "config");
+], d.prototype, "config");
 g([
   y()
-], l.prototype, "map");
+], d.prototype, "map");
 g([
   y()
-], l.prototype, "active");
-typeof l < "u" && l.registerSallaComponent("salla-mirah-lookbook");
+], d.prototype, "active");
+typeof d < "u" && d.registerSallaComponent("salla-mirah-lookbook");
 export {
-  l as default
+  d as default
 };

@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { base } from '../../shared/styles';
-import { style, txt } from '../../shared/salla';
+import { style, localizedString } from '../../shared/salla';
 
 type Pic = { image?: string; caption?: unknown; link?: string };
 /** Masonry gallery with a full-screen lightbox (swipe, arrows, Esc). */
@@ -29,12 +29,12 @@ export default class MirahGallery extends LitElement {
   disconnectedCallback() { super.disconnectedCallback(); removeEventListener('keydown', this.key); }
   render() {
     const c = this.config ?? {}; const imgs = this.imgs(); const cur = imgs[this.open];
-    return html`<div class="wrap" style="--cols:${c.columns ?? 3};${style(c.color)}"><div class="hd"><div><span class="eyebrow">📸 من عالمنا</span>${txt(c.title) ? html`<h2 class="title">${txt(c.title)}</h2>` : ''}${txt(c.subtitle) ? html`<p class="sub">${txt(c.subtitle)}</p>` : ''}</div>
+    return html`<div class="wrap" style="--cols:${c.columns ?? 3};${style(c.color)}"><div class="hd"><div><span class="eyebrow">📸 من عالمنا</span>${localizedString(c.title) ? html`<h2 class="title">${localizedString(c.title)}</h2>` : ''}${localizedString(c.subtitle) ? html`<p class="sub">${localizedString(c.subtitle)}</p>` : ''}</div>
         ${c.handle ? html`<a href=${c.handle} target="_blank" rel="noopener">تابعنا ←</a>` : ''}</div>
-      <div class="m">${imgs.map((p, i) => html`<button @click=${() => (this.open = i)} aria-label="تكبير الصورة ${i + 1}"><img src=${p.image} alt=${txt(p.caption)} loading="lazy" />${txt(p.caption) ? html`<small>${txt(p.caption)}</small>` : ''}</button>`)}</div>
+      <div class="m">${imgs.map((p, i) => html`<button @click=${() => (this.open = i)} aria-label="تكبير الصورة ${i + 1}"><img src=${p.image} alt=${localizedString(p.caption)} loading="lazy" />${localizedString(p.caption) ? html`<small>${localizedString(p.caption)}</small>` : ''}</button>`)}</div>
       ${cur ? html`<div class="lb" role="dialog" aria-modal="true" @click=${(e: Event) => e.target === e.currentTarget && (this.open = -1)}
           @touchstart=${(e: TouchEvent) => (this.sx = e.touches[0].clientX)} @touchend=${(e: TouchEvent) => { const d = e.changedTouches[0].clientX - this.sx; if (Math.abs(d) > 50) this.go(d < 0 ? 1 : -1); }}>
-        <div><img src=${cur.image} alt=${txt(cur.caption)} />${txt(cur.caption) || cur.link ? html`<p>${txt(cur.caption)} ${cur.link ? html`<a href=${cur.link}>تسوّق ←</a>` : ''}</p>` : ''}</div>
+        <div><img src=${cur.image} alt=${localizedString(cur.caption)} />${localizedString(cur.caption) || cur.link ? html`<p>${localizedString(cur.caption)} ${cur.link ? html`<a href=${cur.link}>تسوّق ←</a>` : ''}</p>` : ''}</div>
         <span class="ct">${this.open + 1} / ${imgs.length}</span><button class="nv cl" aria-label="إغلاق" @click=${() => (this.open = -1)}>×</button>
         <button class="nv" style="right:18px" aria-label="السابق" @click=${() => this.go(-1)}>›</button><button class="nv" style="left:18px" aria-label="التالي" @click=${() => this.go(1)}>‹</button></div>` : ''}</div>`;
   }

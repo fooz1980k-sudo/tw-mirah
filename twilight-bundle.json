@@ -532,5 +532,15 @@
         }
     ],
     "author_email": "fooz1980k@gmail.com",
-    "support_url": "https://smmlystore.com"
+    "support_url": "https://smmlystore.com",
+    "templates": [
+        {
+            "id": "3509926b-a6c9-5b5a-bd1c-373128319f15",
+            "path": "templates.tw-mirah-template",
+            "category_id": "",
+            "primary_color": "",
+            "thumbnail": "",
+            "is_default": true
+        }
+    ]
 }
