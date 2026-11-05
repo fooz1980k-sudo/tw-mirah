@@ -1,6 +1,6 @@
-import { css as d, LitElement as m, html as s } from "lit";
-import { property as h, state as g } from "lit/decorators.js";
-const b = d`
+import { css as f, LitElement as m, html as s } from "lit";
+import { property as h, state as u } from "lit/decorators.js";
+const b = f`
   :host { display: block; --tf-accent: var(--tf-custom, var(--color-primary, #c9a45c)); --tf-ink: #0f0c18; --tf-ivory: #f6f1e7; --tf-mut: #a59bc2;
     --tf-gold: linear-gradient(135deg, #f5d68a, #c9a45c 55%, #9a7634); font-family: inherit; direction: inherit; }
   :host([hidden]) { display: none; }
@@ -17,13 +17,38 @@ const b = d`
   .skel { background: linear-gradient(90deg, #8881 0, #8882 50%, #8881 100%); background-size: 200% 100%; animation: sk 1.4s infinite; border-radius: 14px; }
   @keyframes sk { to { background-position: -200% 0; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-`, o = (i) => String(i && typeof i == "object" ? i[(document.documentElement.lang || "ar").slice(0, 2)] ?? i.ar ?? "" : i ?? ""), x = (i) => i ? `--tf-custom:${i}` : "";
-var u = Object.defineProperty, f = (i, t, n, a) => {
-  for (var e = void 0, r = i.length - 1, p; r >= 0; r--)
-    (p = i[r]) && (e = p(t, n, e) || e);
-  return e && u(t, n, e), e;
+`, d = () => window.Salla, x = () => {
+  var i, t, n, o, e;
+  try {
+    const a = ((t = (i = d()) == null ? void 0 : i.lang) == null ? void 0 : t.locale) ?? ((e = (o = (n = d()) == null ? void 0 : n.config) == null ? void 0 : o.get) == null ? void 0 : e.call(o, "user.language_code"));
+    if (typeof a == "string" && a) return a.slice(0, 2);
+  } catch {
+  }
+  return (document.documentElement.lang || "ar").slice(0, 2);
+}, r = (i) => {
+  if (i == null) return "";
+  if (typeof i == "string") {
+    const t = i.trim();
+    if (t.startsWith("{") && t.endsWith("}"))
+      try {
+        return r(JSON.parse(t));
+      } catch {
+      }
+    return i;
+  }
+  if (typeof i == "number" || typeof i == "boolean") return String(i);
+  if (typeof i == "object") {
+    const t = i, n = t[x()] ?? t.ar ?? t.en ?? Object.values(t).find((o) => typeof o == "string" && o);
+    return typeof n == "string" ? n : "";
+  }
+  return "";
+}, y = (i) => i ? `--tf-custom:${i}` : "";
+var k = Object.defineProperty, g = (i, t, n, o) => {
+  for (var e = void 0, a = i.length - 1, p; a >= 0; a--)
+    (p = i[a]) && (e = p(t, n, e) || e);
+  return e && k(t, n, e), e;
 };
-const c = class c extends m {
+const l = class l extends m {
   constructor() {
     super(...arguments), this.open = -1, this.sx = 0, this.key = (t) => {
       this.open < 0 || (t.key === "Escape" && (this.open = -1), t.key === "ArrowLeft" && this.go(1), t.key === "ArrowRight" && this.go(-1));
@@ -44,21 +69,21 @@ const c = class c extends m {
     super.disconnectedCallback(), removeEventListener("keydown", this.key);
   }
   render() {
-    const t = this.config ?? {}, n = this.imgs(), a = n[this.open];
-    return s`<div class="wrap" style="--cols:${t.columns ?? 3};${x(t.color)}"><div class="hd"><div><span class="eyebrow">📸 من عالمنا</span>${o(t.title) ? s`<h2 class="title">${o(t.title)}</h2>` : ""}${o(t.subtitle) ? s`<p class="sub">${o(t.subtitle)}</p>` : ""}</div>
+    const t = this.config ?? {}, n = this.imgs(), o = n[this.open];
+    return s`<div class="wrap" style="--cols:${t.columns ?? 3};${y(t.color)}"><div class="hd"><div><span class="eyebrow">📸 من عالمنا</span>${r(t.title) ? s`<h2 class="title">${r(t.title)}</h2>` : ""}${r(t.subtitle) ? s`<p class="sub">${r(t.subtitle)}</p>` : ""}</div>
         ${t.handle ? s`<a href=${t.handle} target="_blank" rel="noopener">تابعنا ←</a>` : ""}</div>
-      <div class="m">${n.map((e, r) => s`<button @click=${() => this.open = r} aria-label="تكبير الصورة ${r + 1}"><img src=${e.image} alt=${o(e.caption)} loading="lazy" />${o(e.caption) ? s`<small>${o(e.caption)}</small>` : ""}</button>`)}</div>
-      ${a ? s`<div class="lb" role="dialog" aria-modal="true" @click=${(e) => e.target === e.currentTarget && (this.open = -1)}
+      <div class="m">${n.map((e, a) => s`<button @click=${() => this.open = a} aria-label="تكبير الصورة ${a + 1}"><img src=${e.image} alt=${r(e.caption)} loading="lazy" />${r(e.caption) ? s`<small>${r(e.caption)}</small>` : ""}</button>`)}</div>
+      ${o ? s`<div class="lb" role="dialog" aria-modal="true" @click=${(e) => e.target === e.currentTarget && (this.open = -1)}
           @touchstart=${(e) => this.sx = e.touches[0].clientX} @touchend=${(e) => {
-      const r = e.changedTouches[0].clientX - this.sx;
-      Math.abs(r) > 50 && this.go(r < 0 ? 1 : -1);
+      const a = e.changedTouches[0].clientX - this.sx;
+      Math.abs(a) > 50 && this.go(a < 0 ? 1 : -1);
     }}>
-        <div><img src=${a.image} alt=${o(a.caption)} />${o(a.caption) || a.link ? s`<p>${o(a.caption)} ${a.link ? s`<a href=${a.link}>تسوّق ←</a>` : ""}</p>` : ""}</div>
+        <div><img src=${o.image} alt=${r(o.caption)} />${r(o.caption) || o.link ? s`<p>${r(o.caption)} ${o.link ? s`<a href=${o.link}>تسوّق ←</a>` : ""}</p>` : ""}</div>
         <span class="ct">${this.open + 1} / ${n.length}</span><button class="nv cl" aria-label="إغلاق" @click=${() => this.open = -1}>×</button>
         <button class="nv" style="right:18px" aria-label="السابق" @click=${() => this.go(-1)}>›</button><button class="nv" style="left:18px" aria-label="التالي" @click=${() => this.go(1)}>‹</button></div>` : ""}</div>`;
   }
 };
-c.styles = [b, d`
+l.styles = [b, f`
     .m { columns: var(--cols, 3) 240px; column-gap: 14px; }
     .m button { all: unset; display: block; margin-bottom: 14px; border-radius: 20px; overflow: hidden; cursor: zoom-in; position: relative; break-inside: avoid; width: 100%; }
     .m button:focus-visible { outline: 3px solid var(--tf-accent); }
@@ -71,14 +96,14 @@ c.styles = [b, d`
     .cl { position: fixed; top: 18px; inset-inline-end: 18px; } .ct { position: fixed; top: 26px; inset-inline-start: 24px; color: #fff9; font-size: 14px; }
     .hd { display: flex; justify-content: space-between; align-items: end; gap: 12px; flex-wrap: wrap; } .hd a { color: var(--tf-accent); font-weight: 700; text-decoration: none; }
   `];
-let l = c;
-f([
+let c = l;
+g([
   h({ type: Object })
-], l.prototype, "config");
-f([
-  g()
-], l.prototype, "open");
-typeof l < "u" && l.registerSallaComponent("salla-mirah-gallery");
+], c.prototype, "config");
+g([
+  u()
+], c.prototype, "open");
+typeof c < "u" && c.registerSallaComponent("salla-mirah-gallery");
 export {
-  l as default
+  c as default
 };

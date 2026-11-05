@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { base } from '../../shared/styles';
-import { reduced, style, txt } from '../../shared/salla';
+import { reduced, style, localizedString } from '../../shared/salla';
 
 /** Full-bleed muted video hero with a cinematic text reveal; falls back to the poster when motion is reduced or data saver is on. */
 export default class MirahVideoHero extends LitElement {
@@ -21,13 +21,13 @@ export default class MirahVideoHero extends LitElement {
   `];
   render() {
     const c = this.config ?? {}; const save = (navigator as unknown as { connection?: { saveData?: boolean } }).connection?.saveData;
-    const words = (txt(c.title) || 'أناقة تتحرك معك').split(' ');
+    const words = (localizedString(c.title) || 'أناقة تتحرك معك').split(' ');
     return html`<section class="h" style="min-height:${c.height ?? 85}vh;${style(c.color)}">
       ${c.video && !reduced() && !save ? html`<video src=${c.video} poster=${c.poster ?? ''} autoplay loop playsinline .muted=${this.muted} preload="metadata"></video>` : c.poster ? html`<img class="po" src=${c.poster} alt="" />` : ''}
       <div class="ov" style="opacity:${(c.overlay ?? 70) / 100}"></div>
-      <div class="in">${txt(c.eyebrow) ? html`<span class="eyebrow">${txt(c.eyebrow)}</span>` : ''}
+      <div class="in">${localizedString(c.eyebrow) ? html`<span class="eyebrow">${localizedString(c.eyebrow)}</span>` : ''}
         <h1>${words.map((w, i) => html`<span style="animation-delay:${0.08 * i}s">${w}&nbsp;</span>`)}</h1>
-        ${txt(c.subtitle) ? html`<p>${txt(c.subtitle)}</p>` : ''}${txt(c.button) && c.link ? html`<a class="btn" href=${c.link}>${txt(c.button)} ←</a>` : ''}</div>
+        ${localizedString(c.subtitle) ? html`<p>${localizedString(c.subtitle)}</p>` : ''}${localizedString(c.button) && c.link ? html`<a class="btn" href=${c.link}>${localizedString(c.button)} ←</a>` : ''}</div>
       ${c.video ? html`<button class="snd" aria-label=${this.muted ? 'تشغيل الصوت' : 'كتم الصوت'} @click=${() => (this.muted = !this.muted)}>${this.muted ? '🔇' : '🔊'}</button>` : ''}
     </section>`;
   }

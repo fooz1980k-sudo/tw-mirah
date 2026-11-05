@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { base } from '../../shared/styles';
-import { style, txt } from '../../shared/salla';
+import { style, localizedString } from '../../shared/salla';
 
 /** Draggable before/after comparison (mouse, touch and keyboard). */
 export default class MirahBeforeAfter extends LitElement {
@@ -24,12 +24,12 @@ export default class MirahBeforeAfter extends LitElement {
   render() {
     const c = this.config ?? {};
     if (!c.before || !c.after) return html`<div class="wrap"><p class="sub">أضف صورة «قبل» وصورة «بعد» من إعدادات العنصر.</p></div>`;
-    return html`<div class="wrap" style=${style(c.color)}><span class="eyebrow">↔ الفرق واضح</span>${txt(c.title) ? html`<h2 class="title">${txt(c.title)}</h2>` : ''}${txt(c.subtitle) ? html`<p class="sub">${txt(c.subtitle)}</p>` : ''}
+    return html`<div class="wrap" style=${style(c.color)}><span class="eyebrow">↔ الفرق واضح</span>${localizedString(c.title) ? html`<h2 class="title">${localizedString(c.title)}</h2>` : ''}${localizedString(c.subtitle) ? html`<p class="sub">${localizedString(c.subtitle)}</p>` : ''}
       <div class="cmp" dir="ltr" @pointerdown=${this.down} @pointermove=${this.move}>
-        <img src=${c.after} alt=${txt(c.after_label) || 'بعد'} />
-        <div class="top" style="clip-path:inset(0 ${100 - this.pos}% 0 0)"><img src=${c.before} alt=${txt(c.before_label) || 'قبل'} /></div>
-        <span class="lb" style="left:18px">${txt(c.before_label) || 'قبل'}</span><span class="lb" style="right:18px">${txt(c.after_label) || 'بعد'}</span>
+        <img src=${c.after} alt=${localizedString(c.after_label) || 'بعد'} />
+        <div class="top" style="clip-path:inset(0 ${100 - this.pos}% 0 0)"><img src=${c.before} alt=${localizedString(c.before_label) || 'قبل'} /></div>
+        <span class="lb" style="left:18px">${localizedString(c.before_label) || 'قبل'}</span><span class="lb" style="right:18px">${localizedString(c.after_label) || 'بعد'}</span>
         <div class="h" style="left:${this.pos}%"><div class="k" tabindex="0" role="slider" aria-label="اسحب للمقارنة" aria-valuenow=${Math.round(this.pos)} aria-valuemin="0" aria-valuemax="100" @keydown=${this.key}>⇆</div></div></div>
-      ${txt(c.button) && c.link ? html`<div class="foot"><a class="btn" href=${c.link}>${txt(c.button)} ←</a></div>` : ''}</div>`;
+      ${localizedString(c.button) && c.link ? html`<div class="foot"><a class="btn" href=${c.link}>${localizedString(c.button)} ←</a></div>` : ''}</div>`;
   }
 }

@@ -1,6 +1,6 @@
-import { css as c, LitElement as f, html as s } from "lit";
-import { property as b, state as h } from "lit/decorators.js";
-const x = c`
+import { css as f, LitElement as u, html as p } from "lit";
+import { property as h, state as m } from "lit/decorators.js";
+const g = f`
   :host { display: block; --tf-accent: var(--tf-custom, var(--color-primary, #c9a45c)); --tf-ink: #0f0c18; --tf-ivory: #f6f1e7; --tf-mut: #a59bc2;
     --tf-gold: linear-gradient(135deg, #f5d68a, #c9a45c 55%, #9a7634); font-family: inherit; direction: inherit; }
   :host([hidden]) { display: none; }
@@ -17,13 +17,38 @@ const x = c`
   .skel { background: linear-gradient(90deg, #8881 0, #8882 50%, #8881 100%); background-size: 200% 100%; animation: sk 1.4s infinite; border-radius: 14px; }
   @keyframes sk { to { background-position: -200% 0; } }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-`, i = (e) => String(e && typeof e == "object" ? e[(document.documentElement.lang || "ar").slice(0, 2)] ?? e.ar ?? "" : e ?? ""), m = (e) => e ? `--tf-custom:${e}` : "";
-var u = Object.defineProperty, d = (e, t, a, g) => {
-  for (var o = void 0, n = e.length - 1, l; n >= 0; n--)
-    (l = e[n]) && (o = l(t, a, o) || o);
-  return o && u(t, a, o), o;
+`, d = () => window.Salla, x = () => {
+  var e, t, o, n, r;
+  try {
+    const a = ((t = (e = d()) == null ? void 0 : e.lang) == null ? void 0 : t.locale) ?? ((r = (n = (o = d()) == null ? void 0 : o.config) == null ? void 0 : n.get) == null ? void 0 : r.call(n, "user.language_code"));
+    if (typeof a == "string" && a) return a.slice(0, 2);
+  } catch {
+  }
+  return (document.documentElement.lang || "ar").slice(0, 2);
+}, i = (e) => {
+  if (e == null) return "";
+  if (typeof e == "string") {
+    const t = e.trim();
+    if (t.startsWith("{") && t.endsWith("}"))
+      try {
+        return i(JSON.parse(t));
+      } catch {
+      }
+    return e;
+  }
+  if (typeof e == "number" || typeof e == "boolean") return String(e);
+  if (typeof e == "object") {
+    const t = e, o = t[x()] ?? t.ar ?? t.en ?? Object.values(t).find((n) => typeof n == "string" && n);
+    return typeof o == "string" ? o : "";
+  }
+  return "";
+}, y = (e) => e ? `--tf-custom:${e}` : "";
+var v = Object.defineProperty, b = (e, t, o, n) => {
+  for (var r = void 0, a = e.length - 1, c; a >= 0; a--)
+    (c = e[a]) && (r = c(t, o, r) || r);
+  return r && v(t, o, r), r;
 };
-const p = class p extends f {
+const l = class l extends u {
   constructor() {
     super(...arguments), this.pos = 50, this.down = (t) => {
       t.currentTarget.setPointerCapture(t.pointerId), this.set(t);
@@ -34,21 +59,21 @@ const p = class p extends f {
     };
   }
   set(t) {
-    const a = this.renderRoot.querySelector(".cmp").getBoundingClientRect();
-    this.pos = Math.min(100, Math.max(0, (t.clientX - a.left) / a.width * 100));
+    const o = this.renderRoot.querySelector(".cmp").getBoundingClientRect();
+    this.pos = Math.min(100, Math.max(0, (t.clientX - o.left) / o.width * 100));
   }
   render() {
     const t = this.config ?? {};
-    return !t.before || !t.after ? s`<div class="wrap"><p class="sub">أضف صورة «قبل» وصورة «بعد» من إعدادات العنصر.</p></div>` : s`<div class="wrap" style=${m(t.color)}><span class="eyebrow">↔ الفرق واضح</span>${i(t.title) ? s`<h2 class="title">${i(t.title)}</h2>` : ""}${i(t.subtitle) ? s`<p class="sub">${i(t.subtitle)}</p>` : ""}
+    return !t.before || !t.after ? p`<div class="wrap"><p class="sub">أضف صورة «قبل» وصورة «بعد» من إعدادات العنصر.</p></div>` : p`<div class="wrap" style=${y(t.color)}><span class="eyebrow">↔ الفرق واضح</span>${i(t.title) ? p`<h2 class="title">${i(t.title)}</h2>` : ""}${i(t.subtitle) ? p`<p class="sub">${i(t.subtitle)}</p>` : ""}
       <div class="cmp" dir="ltr" @pointerdown=${this.down} @pointermove=${this.move}>
         <img src=${t.after} alt=${i(t.after_label) || "بعد"} />
         <div class="top" style="clip-path:inset(0 ${100 - this.pos}% 0 0)"><img src=${t.before} alt=${i(t.before_label) || "قبل"} /></div>
         <span class="lb" style="left:18px">${i(t.before_label) || "قبل"}</span><span class="lb" style="right:18px">${i(t.after_label) || "بعد"}</span>
         <div class="h" style="left:${this.pos}%"><div class="k" tabindex="0" role="slider" aria-label="اسحب للمقارنة" aria-valuenow=${Math.round(this.pos)} aria-valuemin="0" aria-valuemax="100" @keydown=${this.key}>⇆</div></div></div>
-      ${i(t.button) && t.link ? s`<div class="foot"><a class="btn" href=${t.link}>${i(t.button)} ←</a></div>` : ""}</div>`;
+      ${i(t.button) && t.link ? p`<div class="foot"><a class="btn" href=${t.link}>${i(t.button)} ←</a></div>` : ""}</div>`;
   }
 };
-p.styles = [x, c`
+l.styles = [g, f`
     .cmp { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 16/9; user-select: none; touch-action: pan-y; cursor: ew-resize; background: #ddd; }
     @media (max-width: 600px) { .cmp { aspect-ratio: 4/5; } }
     .cmp img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
@@ -58,14 +83,14 @@ p.styles = [x, c`
     .lb { position: absolute; bottom: 18px; padding: 8px 16px; border-radius: 99px; background: #0009; color: #fff; font-size: 14px; font-weight: 700; backdrop-filter: blur(6px); }
     .foot { margin-top: 20px; text-align: center; }
   `];
-let r = p;
-d([
-  b({ type: Object })
-], r.prototype, "config");
-d([
-  h()
-], r.prototype, "pos");
-typeof r < "u" && r.registerSallaComponent("salla-mirah-before-after");
+let s = l;
+b([
+  h({ type: Object })
+], s.prototype, "config");
+b([
+  m()
+], s.prototype, "pos");
+typeof s < "u" && s.registerSallaComponent("salla-mirah-before-after");
 export {
-  r as default
+  s as default
 };

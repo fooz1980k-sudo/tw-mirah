@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { base } from '../../shared/styles';
-import { addToCart, money, Prod, products, style, toast, txt } from '../../shared/salla';
+import { addToCart, money, Prod, products, style, toast, localizedString } from '../../shared/salla';
 
 /** "Complete the look": one hero image + the pieces, each toggleable, with a live total and one-tap add-all. */
 export default class MirahShopLook extends LitElement {
@@ -27,12 +27,12 @@ export default class MirahShopLook extends LitElement {
   render() {
     const c = this.config ?? {}; const list = this.list ?? []; const sel = list.filter((p) => p.available && !this.off.has(p.id));
     const tot = sel.reduce((a, p) => a + p.price, 0), reg = sel.reduce((a, p) => a + p.regular, 0);
-    return html`<div class="wrap" style=${style(c.color)}><span class="eyebrow">👗 أكمل الإطلالة</span><h2 class="title">${txt(c.title) || 'الإطلالة كاملة'}</h2>${txt(c.subtitle) ? html`<p class="sub">${txt(c.subtitle)}</p>` : ''}
+    return html`<div class="wrap" style=${style(c.color)}><span class="eyebrow">👗 أكمل الإطلالة</span><h2 class="title">${localizedString(c.title) || 'الإطلالة كاملة'}</h2>${localizedString(c.subtitle) ? html`<p class="sub">${localizedString(c.subtitle)}</p>` : ''}
       <div class="g">${c.image ? html`<div class="hero"><img src=${c.image} alt="" loading="lazy" /></div>` : ''}
         <div>${this.list === null ? html`<div class="skel" style="height:320px"></div>` : list.map((p) => html`<label class="it ${this.off.has(p.id) || !p.available ? 'off' : ''}">
             <input type="checkbox" .checked=${p.available && !this.off.has(p.id)} ?disabled=${!p.available} @change=${() => this.toggle(p.id)} />
             <img src=${p.image} alt="" loading="lazy" /><a href=${p.url} @click=${(e: Event) => e.stopPropagation()}>${p.name}${p.available ? '' : html` <small>(غير متوفر)</small>`}</a><b>${money(p.price)}</b></label>`)}
-          <div class="sum dark"><div>المجموع (${sel.length} قطع)<br /><b>${money(tot)}</b>${reg > tot ? html`<s>${money(reg)}</s><span class="sv">وفّرت ${money(reg - tot)}</span>` : ''}${txt(c.note) ? html`<span class="sv">${txt(c.note)}</span>` : ''}</div>
+          <div class="sum dark"><div>المجموع (${sel.length} قطع)<br /><b>${money(tot)}</b>${reg > tot ? html`<s>${money(reg)}</s><span class="sv">وفّرت ${money(reg - tot)}</span>` : ''}${localizedString(c.note) ? html`<span class="sv">${localizedString(c.note)}</span>` : ''}</div>
             <button class="btn" ?disabled=${!sel.length || this.busy} @click=${() => this.addAll(sel)}>${this.busy ? 'جاري الإضافة…' : 'أضف الإطلالة للسلة'}</button></div></div></div></div>`;
   }
 }
